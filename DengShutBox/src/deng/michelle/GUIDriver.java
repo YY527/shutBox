@@ -38,25 +38,50 @@ public class GUIDriver extends Application {
 		vbox.getChildren().addAll(btnRoll,result,lblValue,lblValue2);
 		vbox.setAlignment(Pos.CENTER);
 		
+		// Create and display lock in
 		Button lockIn = new Button("Lock in");
 		vbox.getChildren().add(lockIn);
 		lockIn.setAlignment(Pos.CENTER);
 		
 		for (int i=0; i<tileBtns.length; i++) {
 			tileBtns[i] = new Button(String.valueOf(i+1));
+			tileBtns[i].setStyle("-fx-background-color:#e1e0df");
 			tiles[i] = new Tile(i+1);
 			tileBox.getChildren().add(tileBtns[i]);
 		}
 		
+		lockIn.setOnAction(e -> {
+			
+		});
+		
 		for(Button b: tileBtns) {
 			b.setOnAction(e -> {
-				b.setStyle("-fx-background-color:#bab0a6");
-				if (b.equals(lblValue)) {
-					
+				if (b.getStyle().equals("-fx-background-color:#e1e0df")) {
+					b.setStyle("-fx-background-color:#bab0a6");
+				} else {
+					b.setStyle("-fx-background-color:#e1e0df");
 				}
 				
+				//b.setDisable(true);
+				//int num = Integer.valueOf(b.getText());
+				//System.out.print(num);
+				//int sum = num++;
+				//System.out.print(sum);
+			
 			});
 			
+		}
+		for(Button b: tileBtns) {
+			
+			lockIn.setOnAction(e -> {
+				int sum = 0;
+				
+				if (b.getStyle().equals("-fx-background-color:bab0a6"))  {
+					sum += Integer.valueOf(b.getText());
+					
+				
+				}
+			});
 		}
 		
 		btnRoll.setOnAction(e -> {
